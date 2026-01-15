@@ -52,14 +52,21 @@
             background-size: cover;
             background-position: center bottom;
             position: relative;
-            transition: background-image 0.5s;
+            transition: background 0.5s; /* Smooth transition for gradients */
             overflow: hidden;
             border-bottom: 4px solid #333;
         }
         
-        .bg-forest { background-image: url('https://i.imgur.com/3q16h5E.png'); background-color: #a8d68d; } 
-        .bg-city { background-image: url('https://i.imgur.com/J8vj1eJ.png'); background-color: #a0a0a0; }
-        .bg-gym { background-image: url('https://i.imgur.com/8Qj8j0k.png'); background-color: #e0c068; }
+        /* CSS Gradients for reliable backgrounds */
+        .bg-forest { 
+            background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 65%, #228B22 65%, #228B22 100%);
+        } 
+        .bg-city { 
+            background: linear-gradient(to bottom, #2c3e50 0%, #34495e 60%, #7f8c8d 60%, #95a5a6 100%);
+        }
+        .bg-gym { 
+            background: linear-gradient(to bottom, #f1c40f 0%, #f39c12 70%, #d35400 70%, #e67e22 100%);
+        }
 
         /* Platforms - Adjusted positions */
         .platform {
