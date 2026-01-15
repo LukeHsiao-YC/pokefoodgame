@@ -597,6 +597,8 @@ class BattleSystem {
     async startAdventureStage(idx) {
         if (idx >= STAGES.length) {
             this.typewriter("恭喜！你擊敗了所有肥胖魔王！\n你現在是真正的健康大師！");
+            await this.wait(3000);
+            this.showRestart(true);
             return;
         }
 
@@ -732,7 +734,10 @@ class BattleSystem {
         await this.wait(1000);
         this.els.pSprite.classList.remove('anim-heal', 'anim-buff');
         
-        this.enemyTurn();
+        // Return to main menu
+        this.state = 'BATTLE';
+        this.els.mainMenu.style.display = 'grid';
+        this.typewriter(`請選擇下一步行動！`);
     }
 
     // --- Party Menu ---
@@ -797,7 +802,10 @@ class BattleSystem {
         this.pActive = newIndex;
         this.startBattle(newIndex);
         await this.wait(1000);
-        this.enemyTurn();
+        
+        // Return to main menu
+        this.toMainMenu();
+        this.typewriter(`輪到 ${this.pTeam[this.pActive].name} 行動了！`);
     }
 
     renderPlayerHud() {
@@ -847,16 +855,18 @@ class BattleSystem {
         }
     }
 
+    toMainMenu() {
+        if(this.state !== 'BATTLE') return;
+        this.els.moveMenu.style.display = 'none';
+        this.els.bagMenu.style.display = 'none';
+        this.els.partyMenu.style.display = 'none';
+        this.els.mainMenu.style.display = 'grid';
+    }
+
     toMoveMenu() {
         if(this.state !== 'BATTLE') return;
         this.els.mainMenu.style.display = 'none';
         this.els.moveMenu.style.display = 'grid';
-    }
-
-    toMainMenu() {
-        if(this.state !== 'BATTLE') return;
-        this.els.moveMenu.style.display = 'none';
-        this.els.mainMenu.style.display = 'grid';
     }
 
     run() { this.typewriter("面對健康問題，\n絕對不能逃跑！"); }
@@ -976,9 +986,30 @@ class BattleSystem {
             } else {
                 this.typewriter("全軍覆沒...\n請重新挑戰！");
                 await this.wait(3000);
-                location.reload();
+                this.showRestart(false);
             }
         }
+    }
+
+    showRestart(isWin) {
+        this.state = 'GAME_OVER';
+        this.els.moveMenu.style.display = 'none';
+        this.els.partyMenu.style.display = 'none';
+        this.els.bagMenu.style.display = 'none';
+        
+        // Re-purpose main menu
+        this.els.mainMenu.style.display = 'flex'; 
+        this.els.mainMenu.innerHTML = '';
+        
+        const btn = document.createElement('button');
+        btn.className = 'btn';
+        btn.style.width = '100%';
+        btn.style.height = '100%';
+        btn.style.fontSize = '20px';
+        btn.innerText = isWin ? '🏆 再次挑戰' : '🔄 重新開始';
+        btn.onclick = () => location.reload();
+        
+        this.els.mainMenu.appendChild(btn);
     }
 
     getHpColor(pct) { if (pct > 50) return '#48c075'; if (pct > 20) return '#f5ac38'; return '#e64e4e'; }
