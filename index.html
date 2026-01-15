@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>°·±d¤j®v¡G¥NÁÂ¤§¾Ô - «_ÀI½g</title>
+    <title>å¥åº·å¤§å¸«ï¼šä»£è¬ä¹‹æˆ° - å†’éšªç¯‡</title>
+    <!-- Pixel font for English/Numbers -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,7 +20,8 @@
         * { box-sizing: border-box; user-select: none; }
 
         body {
-            font-family: 'Press Start 2P', cursive, 'Microsoft JhengHei', sans-serif;
+            /* Updated Font Stack: Prioritizes Pixel font for English, then standard Chinese fonts for different OS */
+            font-family: 'Press Start 2P', 'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'LiHei Pro', sans-serif;
             background-color: var(--bg-color);
             margin: 0;
             display: flex;
@@ -193,7 +195,7 @@
             overflow-y: hidden;
         }
         #dialogue-box::after {
-            content: '¡¿';
+            content: 'â–¼';
             position: absolute;
             bottom: 10px;
             right: 10px;
@@ -221,7 +223,8 @@
             background: #f8f9fa;
             border: 4px solid #4a4a4a;
             border-radius: 8px;
-            font-family: 'Press Start 2P', cursive, sans-serif;
+            /* Updated Font Stack for buttons as well */
+            font-family: 'Press Start 2P', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
             font-size: 14px;
             cursor: pointer;
             text-align: center;
@@ -309,8 +312,8 @@
 <div id="game-boy">
     <div id="loader">
         <div class="spinner"></div>
-        <div>¥¿¦b³s±µ PokeAPI...</div>
-        <div style="font-size: 14px; margin-top: 15px; color:#aaa;">·Ç³Æ°·±dª¾ÃÑ¸ê®Æ®w<br>«Ø¥ß®zÂI¤ÀªR¼Ò«¬</div>
+        <div>æ­£åœ¨é€£æ¥ PokÃ©API...</div>
+        <div style="font-size: 14px; margin-top: 15px; color:#aaa;">æº–å‚™å¥åº·çŸ¥è­˜è³‡æ–™åº«<br>å»ºç«‹å¼±é»åˆ†ææ¨¡å‹</div>
     </div>
 
     <canvas id="fx-canvas"></canvas>
@@ -349,16 +352,16 @@
 
     <div id="ui-layer">
         <div id="dialogue-box" onclick="battle.advanceText()">
-            ¥¿¦bªì©l¤Æ«_ÀI...
+            æ­£åœ¨åˆå§‹åŒ–å†’éšª...
         </div>
 
         <div id="controls">
             <!-- Main Actions -->
             <div id="main-menu">
-                <button class="btn" onclick="battle.toMoveMenu()">?? ¾Ô°«</button>
-                <button class="btn" onclick="battle.showBag()">?? ­I¥]</button>
-                <button class="btn" onclick="battle.openPartyMenu(false)">?? ºëÆF</button>
-                <button class="btn" onclick="battle.run()">?? °k¶]</button>
+                <button class="btn" onclick="battle.toMoveMenu()">âš”ï¸ æˆ°é¬¥</button>
+                <button class="btn" onclick="battle.showBag()">ğŸ’ èƒŒåŒ…</button>
+                <button class="btn" onclick="battle.openPartyMenu(false)">ğŸ‘¥ ç²¾éˆ</button>
+                <button class="btn" onclick="battle.run()">ğŸƒ é€ƒè·‘</button>
             </div>
 
             <!-- Moves -->
@@ -379,30 +382,30 @@
  * Configuration & Data
  */
 const PLAYER_CONFIG = [
-    { id: 68, name: "©Ç¤O (¹B°Ê)", role: "fighting", customMoves: ["Cross Chop", "Vital Throw", "Strength", "Bulk Up"] },
-    { id: 154, name: "¤jªÇ¸ª (ÅÖºû)", role: "grass", customMoves: ["Giga Drain", "Synthesis", "Petal Dance", "Sunny Day"] },
-    { id: 9, name: "¤ô½bÀt (¤ô¤À)", role: "water", customMoves: ["Hydro Pump", "Aqua Ring", "Rain Dance", "Protect"] },
-    { id: 448, name: "¸ô¥d§Q¼Ú (·N§Ó)", role: "fighting", customMoves: ["Aura Sphere", "Calm Mind", "Close Combat", "Quick Attack"] }
+    { id: 68, name: "æ€ªåŠ› (é‹å‹•)", role: "fighting", customMoves: ["Cross Chop", "Vital Throw", "Strength", "Bulk Up"] },
+    { id: 154, name: "å¤§ç«ºè‘µ (çº–ç¶­)", role: "grass", customMoves: ["Giga Drain", "Synthesis", "Petal Dance", "Sunny Day"] },
+    { id: 9, name: "æ°´ç®­é¾œ (æ°´åˆ†)", role: "water", customMoves: ["Hydro Pump", "Aqua Ring", "Rain Dance", "Protect"] },
+    { id: 448, name: "è·¯å¡åˆ©æ­ (æ„å¿—)", role: "fighting", customMoves: ["Aura Sphere", "Calm Mind", "Close Combat", "Quick Attack"] }
 ];
 
 const STAGES = [
     {
-        name: "²Ä¤@Ãö¡G¿}ªG´ËªL",
+        name: "ç¬¬ä¸€é—œï¼šç³–æœæ£®æ—",
         bg: "bg-forest",
-        intro: "ªÅ®ğ¤¤Äjº©µÛ²¢¿°ªº¨ı¹D...\n¤p¤ß¡I¿}Å}·|¾É­P¯Ø®q¯Àªı§Ü¡I",
-        enemyConfig: { id: 584, name: "Âù­¿¦h¦h¦B (¿}Å})", role: "sugar", customMoves: ["Icicle Crash", "Sweet Scent", "Avalanche", "Blizzard"] }
+        intro: "ç©ºæ°£ä¸­ç€°æ¼«è‘—ç”œè†©çš„å‘³é“...\nå°å¿ƒï¼ç³–ç™®æœƒå°è‡´èƒ°å³¶ç´ é˜»æŠ—ï¼",
+        enemyConfig: { id: 584, name: "é›™å€å¤šå¤šå†° (ç³–ç™®)", role: "sugar", customMoves: ["Icicle Crash", "Sweet Scent", "Avalanche", "Blizzard"] }
     },
     {
-        name: "²Ä¤GÃö¡G¨Fµo¤s¨¦",
+        name: "ç¬¬äºŒé—œï¼šæ²™ç™¼å±±è°·",
         bg: "bg-gym",
-        intro: "³o¸Ìªº©~¥Á¾ã¤Ñ½öµÛ¤£°Ê...\n¤[§¤¬O¸U¯f¤§·½¡I",
-        enemyConfig: { id: 143, name: "¥d¤ñÃ~ (¤[§¤)", role: "lazy", customMoves: ["Yawn", "Rest", "Body Slam", "Snore"] }
+        intro: "é€™è£¡çš„å±…æ°‘æ•´å¤©èººè‘—ä¸å‹•...\nä¹…åæ˜¯è¬ç—…ä¹‹æºï¼",
+        enemyConfig: { id: 143, name: "å¡æ¯”ç¸ (ä¹…å)", role: "lazy", customMoves: ["Yawn", "Rest", "Body Slam", "Snore"] }
     },
     {
-        name: "²Ä¤TÃö¡G©U§£±»®I³õ",
+        name: "ç¬¬ä¸‰é—œï¼šåƒåœ¾æ©åŸ‹å ´",
         bg: "bg-city",
-        intro: "¥Rº¡¤F¥[¤u­¹«~©Mªo¬µ¨ı...\n©U§£­¹ª«·|³y¦¨¨­Åéµoª¢¡I",
-        enemyConfig: { id: 89, name: "¯ä¯äªd (¬r¯À)", role: "junk", customMoves: ["Sludge Bomb", "Gunk Shot", "Toxic", "Belch"] }
+        intro: "å……æ»¿äº†åŠ å·¥é£Ÿå“å’Œæ²¹ç‚¸å‘³...\nåƒåœ¾é£Ÿç‰©æœƒé€ æˆèº«é«”ç™¼ç‚ï¼",
+        enemyConfig: { id: 89, name: "è‡­è‡­æ³¥ (æ¯’ç´ )", role: "junk", customMoves: ["Sludge Bomb", "Gunk Shot", "Toxic", "Belch"] }
     }
 ];
 
@@ -413,17 +416,17 @@ const HEALTH_TYPE_CHART = {
 };
 
 const EDU_TEXT = {
-    "fighting": "¹B°Ê¯à±j¤Æ°©Àf»P¦Ù¦×¡A´£¤É°òÂ¦¥NÁÂ²v¡I",
-    "grass": "½­µæ´I§t¿¯­¹ÅÖºû¡A¯à¼W¥[¹¡¨¬·P¨ÃÃ­©w¦å¿}¡I",
-    "water": "¦h³Ü¤ô¨ú¥N§t¿}¶¼®Æ¡A«P¶i·s³¯¥NÁÂ¡I",
-    "poison": "¥[¤u­¹«~»P¤Ï¦¡¯×ªÕ¡A·|³y¦¨¨­ÅéºC©Êµoª¢¡I",
-    "ice": "°ªªG¿}¿}¼ß·|¾É­P¯Ø®q¯Àªı§Ü»P¯×ªÕ¨x¡I",
-    "normal": "¤[§¤¤£°ÊÅı¯×ªÕ°ï¿n¡A¼W¥[¤ß¦åºŞ¯e¯f­·ÀI¡I",
-    "rest": "ºÎ¯v¤£¨¬·|¾É­P²üº¸»X¥¢½Õ¡A§ó®e©öÅÜ­D¡I",
-    "slack-off": "¬İ¹qµø®É¶¡¹Lªø»P¨àµ£ªÎ­D¦³°ª«×¬ÛÃö¡I",
-    "bulk-up": "¦Ù¤O°V½m¦³§U©ó¿U¿N§ó¦h¼ö¶q¡I",
-    "synthesis": "§¡¿Å¶¼­¹¬O°·±dªº°òÂ¦¡I",
-    "gunk-shot": "ªo¬µ­¹ª«¼ö¶qÃzªí¡A¤Ö¦Y¬°§®¡I"
+    "fighting": "é‹å‹•èƒ½å¼·åŒ–éª¨éª¼èˆ‡è‚Œè‚‰ï¼Œæå‡åŸºç¤ä»£è¬ç‡ï¼",
+    "grass": "è”¬èœå¯Œå«è†³é£Ÿçº–ç¶­ï¼Œèƒ½å¢åŠ é£½è¶³æ„Ÿä¸¦ç©©å®šè¡€ç³–ï¼",
+    "water": "å¤šå–æ°´å–ä»£å«ç³–é£²æ–™ï¼Œä¿ƒé€²æ–°é™³ä»£è¬ï¼",
+    "poison": "åŠ å·¥é£Ÿå“èˆ‡åå¼è„‚è‚ªï¼Œæœƒé€ æˆèº«é«”æ…¢æ€§ç™¼ç‚ï¼",
+    "ice": "é«˜æœç³–ç³–æ¼¿æœƒå°è‡´èƒ°å³¶ç´ é˜»æŠ—èˆ‡è„‚è‚ªè‚ï¼",
+    "normal": "ä¹…åä¸å‹•è®“è„‚è‚ªå †ç©ï¼Œå¢åŠ å¿ƒè¡€ç®¡ç–¾ç—…é¢¨éšªï¼",
+    "rest": "ç¡çœ ä¸è¶³æœƒå°è‡´è·çˆ¾è’™å¤±èª¿ï¼Œæ›´å®¹æ˜“è®Šèƒ–ï¼",
+    "slack-off": "çœ‹é›»è¦–æ™‚é–“éé•·èˆ‡å…’ç«¥è‚¥èƒ–æœ‰é«˜åº¦ç›¸é—œï¼",
+    "bulk-up": "è‚ŒåŠ›è¨“ç·´æœ‰åŠ©æ–¼ç‡ƒç‡’æ›´å¤šç†±é‡ï¼",
+    "synthesis": "å‡è¡¡é£²é£Ÿæ˜¯å¥åº·çš„åŸºç¤ï¼",
+    "gunk-shot": "æ²¹ç‚¸é£Ÿç‰©ç†±é‡çˆ†è¡¨ï¼Œå°‘åƒç‚ºå¦™ï¼"
 };
 
 const ANIM_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/";
@@ -475,7 +478,7 @@ class BattleSystem {
             this.startAdventureStage(0);
         } catch (e) {
             console.error(e);
-            this.els.loader.innerHTML = "¸ê®ÆÅª¨ú¥¢±Ñ<br>½ĞÀË¬dºô¸ô³s½u";
+            this.els.loader.innerHTML = "è³‡æ–™è®€å–å¤±æ•—<br>è«‹æª¢æŸ¥ç¶²è·¯é€£ç·š";
         }
     }
 
@@ -520,7 +523,7 @@ class BattleSystem {
 
     async startAdventureStage(idx) {
         if (idx >= STAGES.length) {
-            this.typewriter("®¥³ß¡I§AÀ»±Ñ¤F©Ò¦³ªÎ­DÅ]¤ı¡I\n§A²{¦b¬O¯u¥¿ªº°·±d¤j®v¡I");
+            this.typewriter("æ­å–œï¼ä½ æ“Šæ•—äº†æ‰€æœ‰è‚¥èƒ–é­”ç‹ï¼\nä½ ç¾åœ¨æ˜¯çœŸæ­£çš„å¥åº·å¤§å¸«ï¼");
             return;
         }
 
@@ -540,13 +543,13 @@ class BattleSystem {
         await this.wait(2500);
 
         try {
-            this.typewriter("¼Ä¤H¥X²{¤F¡I");
+            this.typewriter("æ•µäººå‡ºç¾äº†ï¼");
             const enemy = await this.fetchPokemon(stage.enemyConfig);
             this.eTeam = [enemy];
             this.renderEnemy(enemy);
             await this.wait(1000);
             
-            this.typewriter("­n¬£½Ö¤W³õÀ³¾Ô©O¡H");
+            this.typewriter("è¦æ´¾èª°ä¸Šå ´æ‡‰æˆ°å‘¢ï¼Ÿ");
             await this.wait(1000);
             this.openPartyMenu(true);
 
@@ -586,7 +589,7 @@ class BattleSystem {
         this.state = 'BATTLE';
         this.els.partyMenu.style.display = 'none';
         this.toMainMenu();
-        this.typewriter(`´N¨M©w¬O§A¤F¡A${p.name}¡I`);
+        this.typewriter(`å°±æ±ºå®šæ˜¯ä½ äº†ï¼Œ${p.name}ï¼`);
     }
 
     // --- Party Menu ---
@@ -595,7 +598,7 @@ class BattleSystem {
         this.els.moveMenu.style.display = 'none';
         this.els.mainMenu.style.display = 'none';
         this.els.partyMenu.style.display = 'flex';
-        this.els.partyMenu.innerHTML = `<div class="party-title">${isForced ? '¿ï¾Ü¥X¾ÔºëÆF (¥²¶·¿ï¾Ü)' : '¿ï¾Ü­n§ó´«ªººëÆF'}</div>`;
+        this.els.partyMenu.innerHTML = `<div class="party-title">${isForced ? 'é¸æ“‡å‡ºæˆ°ç²¾éˆ (å¿…é ˆé¸æ“‡)' : 'é¸æ“‡è¦æ›´æ›çš„ç²¾éˆ'}</div>`;
 
         this.pTeam.forEach((p, i) => {
             const slot = document.createElement('div');
@@ -604,9 +607,9 @@ class BattleSystem {
             const hpPct = (p.stats.currentHp / p.stats.maxHp) * 100;
             const hpColor = this.getHpColor(hpPct);
             let roleText = "";
-            if(p.role === 'fighting') roleText = "¾Õªø¡G¹B°Ê";
-            if(p.role === 'grass') roleText = "¾Õªø¡G¶¼­¹±±¨î";
-            if(p.role === 'water') roleText = "¾Õªø¡G¥NÁÂ";
+            if(p.role === 'fighting') roleText = "æ“…é•·ï¼šé‹å‹•";
+            if(p.role === 'grass') roleText = "æ“…é•·ï¼šé£²é£Ÿæ§åˆ¶";
+            if(p.role === 'water') roleText = "æ“…é•·ï¼šä»£è¬";
 
             slot.innerHTML = `
                 <img src="${p.spriteFront}" style="width:50px;height:50px;object-fit:contain;">
@@ -622,7 +625,7 @@ class BattleSystem {
             slot.onclick = () => {
                 if (p.fainted) return;
                 if (i === this.pActive && this.state === 'BATTLE' && !isForced) {
-                    this.typewriter(`${p.name} ¤w¸g¦b³õ¤W¤F¡I`);
+                    this.typewriter(`${p.name} å·²ç¶“åœ¨å ´ä¸Šäº†ï¼`);
                     return;
                 }
                 
@@ -638,7 +641,7 @@ class BattleSystem {
         if (!isForced && this.state === 'BATTLE') {
             const cancelBtn = document.createElement('button');
             cancelBtn.className = 'btn';
-            cancelBtn.innerText = '¨ú®ø';
+            cancelBtn.innerText = 'å–æ¶ˆ';
             cancelBtn.style.marginTop = '15px';
             cancelBtn.onclick = () => {
                 this.els.partyMenu.style.display = 'none';
@@ -652,7 +655,7 @@ class BattleSystem {
         this.els.partyMenu.style.display = 'none';
         this.state = 'BUSY';
         
-        this.typewriter(`${this.pTeam[this.pActive].name}¡A¦^¨Ó§a¡I`);
+        this.typewriter(`${this.pTeam[this.pActive].name}ï¼Œå›ä¾†å§ï¼`);
         this.els.pSprite.style.opacity = 0;
         await this.wait(1000);
 
@@ -664,7 +667,7 @@ class BattleSystem {
             this.els.pSprite.style.display = 'block';
         };
         
-        this.typewriter(`¥h§a¡A${p.name}¡I`);
+        this.typewriter(`å»å§ï¼Œ${p.name}ï¼`);
         this.els.pSprite.style.opacity = 1;
         this.renderPlayerHud();
         this.updateHpBars();
@@ -697,7 +700,7 @@ class BattleSystem {
         
         const backBtn = document.createElement('button');
         backBtn.className = 'btn';
-        backBtn.innerText = '? ªğ¦^';
+        backBtn.innerText = 'â†© è¿”å›';
         backBtn.onclick = () => this.toMainMenu();
         this.els.moveMenu.appendChild(backBtn);
     }
@@ -705,12 +708,12 @@ class BattleSystem {
     renderBadges(id, types) {
         const el = document.getElementById(id);
         const mapType = (t) => {
-            if(t === 'normal') return '¤[§¤';
-            if(t === 'ice') return '¿}¤À';
-            if(t === 'poison') return '©U§£­¹ª«';
-            if(t === 'fighting') return '¹B°Ê';
-            if(t === 'grass') return 'ÅÖºû';
-            if(t === 'water') return '¤ô¤À';
+            if(t === 'normal') return 'ä¹…å';
+            if(t === 'ice') return 'ç³–åˆ†';
+            if(t === 'poison') return 'åƒåœ¾é£Ÿç‰©';
+            if(t === 'fighting') return 'é‹å‹•';
+            if(t === 'grass') return 'çº–ç¶­';
+            if(t === 'water') return 'æ°´åˆ†';
             return t;
         };
 
@@ -750,11 +753,11 @@ class BattleSystem {
     }
 
     showBag() {
-        this.typewriter("­I¥]¸Ì¥u¦³¤ô©M½­µæ´Î¡I\n³o¨Ç¤w¸g³z¹L§Ş¯à¨Ï¥ÎÅo¡C");
+        this.typewriter("èƒŒåŒ…è£¡åªæœ‰æ°´å’Œè”¬èœæ£’ï¼\né€™äº›å·²ç¶“é€éæŠ€èƒ½ä½¿ç”¨å›‰ã€‚");
     }
     
     run() {
-        this.typewriter("­±¹ï°·±d°İÃD¡A\nµ´¹ï¤£¯à°k¶]¡I");
+        this.typewriter("é¢å°å¥åº·å•é¡Œï¼Œ\nçµ•å°ä¸èƒ½é€ƒè·‘ï¼");
     }
 
     async useMove(moveIndex) {
@@ -792,12 +795,12 @@ class BattleSystem {
         } else {
             this.state = 'BATTLE';
             this.toMainMenu();
-            this.typewriter(`½ü¨ì ${defender.name} ¦æ°Ê¤F¡I`);
+            this.typewriter(`è¼ªåˆ° ${defender.name} è¡Œå‹•äº†ï¼`);
         }
     }
 
     async executeTurn(attacker, defender, move, isPlayer) {
-        this.typewriter(`${attacker.name} ¨Ï¥Î¤F ¡i${move.name}¡j¡I`);
+        this.typewriter(`${attacker.name} ä½¿ç”¨äº† ã€${move.name}ã€‘ï¼`);
         await this.wait(1000);
 
         const sprite = isPlayer ? this.els.pSprite : this.els.eSprite;
@@ -818,8 +821,8 @@ class BattleSystem {
             if (HEALTH_TYPE_CHART[enemyRole] && HEALTH_TYPE_CHART[enemyRole][moveType]) {
                 effectiveness = HEALTH_TYPE_CHART[enemyRole][moveType];
             }
-            if (effectiveness > 1) effMessage = "®ÄªGµ´¨Î¡I (¹ï¯g¤UÃÄ)";
-            if (effectiveness < 1) effMessage = "®ÄªG¤£¦n... (¤èªk¿ù»~)";
+            if (effectiveness > 1) effMessage = "æ•ˆæœçµ•ä½³ï¼ (å°ç—‡ä¸‹è—¥)";
+            if (effectiveness < 1) effMessage = "æ•ˆæœä¸å¥½... (æ–¹æ³•éŒ¯èª¤)";
         }
 
         let damage = (move.power * (attacker.stats.atk / defender.stats.def)) / 1.5;
@@ -843,7 +846,7 @@ class BattleSystem {
 
         const eduMsg = EDU_TEXT[move.originalName] || EDU_TEXT[move.type];
         if (eduMsg) {
-            this.typewriter(`${isPlayer ? '?? ª¾ÃÑ' : '?? Äµ°T'}¡G\n${eduMsg}`);
+            this.typewriter(`${isPlayer ? 'ğŸ’¡ çŸ¥è­˜' : 'âš ï¸ è­¦è¨Š'}ï¼š\n${eduMsg}`);
             await this.wait(2000);
         }
     }
@@ -851,24 +854,24 @@ class BattleSystem {
     async handleFaint(pokemon, isPlayer) {
         const sprite = isPlayer ? this.els.pSprite : this.els.eSprite;
         pokemon.fainted = true;
-        this.typewriter(`${pokemon.name} ­Ë¤U¤F¡I`);
+        this.typewriter(`${pokemon.name} å€’ä¸‹äº†ï¼`);
         sprite.classList.add('anim-faint');
         await this.wait(1500);
         sprite.classList.remove('anim-faint');
         sprite.style.opacity = 0;
 
         if (!isPlayer) {
-            this.typewriter(`¦¨¥\À»°h¤F ${pokemon.name}¡I\n¥ğ®§¤@¤U¡AÄ~Äò«e¶i...`);
+            this.typewriter(`æˆåŠŸæ“Šé€€äº† ${pokemon.name}ï¼\nä¼‘æ¯ä¸€ä¸‹ï¼Œç¹¼çºŒå‰é€²...`);
             await this.wait(2000);
             this.startAdventureStage(this.currentStageIdx + 1);
         } else {
             const hasAlive = this.pTeam.some(p => !p.fainted);
             if (hasAlive) {
-                this.typewriter("§AªººëÆF­Ë¤U¤F¡A½Ğ¿ï¾Ü¤U¤@°¦¡I");
+                this.typewriter("ä½ çš„ç²¾éˆå€’ä¸‹äº†ï¼Œè«‹é¸æ“‡ä¸‹ä¸€éš»ï¼");
                 await this.wait(1000);
                 this.openPartyMenu(true);
             } else {
-                this.typewriter("§Aªº¶¤¥î¥ş­xÂĞ¨S...\n½Ğ¥ğ®§«á­«·s¬D¾Ô¡I");
+                this.typewriter("ä½ çš„éšŠä¼å…¨è»è¦†æ²’...\nè«‹ä¼‘æ¯å¾Œé‡æ–°æŒ‘æˆ°ï¼");
                 await this.wait(3000);
                 location.reload();
             }
@@ -893,8 +896,8 @@ class BattleSystem {
     }
 
     getTypeIcon(type) {
-        const icons = { grass: '??', fire: '??', water: '??', fighting: '??', normal: '?', poison: '??', ice: '??' };
-        return icons[type] || '?';
+        const icons = { grass: 'ğŸŒ¿', fire: 'ğŸ”¥', water: 'ğŸ’§', fighting: 'ğŸ’ª', normal: 'âšª', poison: 'â˜ ï¸', ice: 'â„ï¸' };
+        return icons[type] || 'âœ¨';
     }
 
     typewriter(text) {
