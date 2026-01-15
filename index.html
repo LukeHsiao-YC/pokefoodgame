@@ -78,7 +78,7 @@
             image-rendering: pixelated;
             transition: filter 0.2s, transform 0.2s, opacity 0.5s;
             opacity: 0;
-            display: block;
+            display: block; /* Ensure display is block by default */
             object-fit: contain;
         }
         
@@ -106,7 +106,7 @@
 
         /* Battle Animations */
         .anim-shake { animation: shake 0.5s; }
-        .anim-attack-p { animation: attack-lunge 0.2s; } /* Faster lunge */
+        .anim-attack-p { animation: attack-lunge 0.2s; }
         .anim-attack-e { animation: enemy-lunge 0.2s; }
         .anim-faint { animation: faint 1s forwards; }
 
@@ -214,11 +214,12 @@
             <div class="status-badges" id="p-badges"></div>
         </div>
 
+        <!-- REMOVED inline onerror to prevent accidental hiding -->
         <div class="platform" id="enemy-platform"></div>
-        <img id="enemy-sprite" class="sprite" src="" alt="Enemy" onerror="this.style.display='none'">
+        <img id="enemy-sprite" class="sprite" src="" alt="Enemy">
         
         <div class="platform" id="player-platform"></div>
-        <img id="player-sprite" class="sprite" src="" alt="Player" onerror="this.style.display='none'">
+        <img id="player-sprite" class="sprite" src="" alt="Player">
     </div>
 
     <div id="ui-layer">
@@ -643,8 +644,13 @@ class BattleSystem {
     }
 
     renderEnemy(enemy) {
+        this.els.eSprite.style.display = 'block'; // Force display to prevent hidden state
         this.els.eSprite.src = enemy.spriteFront;
-        this.els.eSprite.onerror = () => { this.els.eSprite.src = enemy.spriteFrontStatic; };
+        this.els.eSprite.onerror = () => { 
+            this.els.eSprite.src = enemy.spriteFrontStatic; 
+            this.els.eSprite.style.display = 'block';
+        };
+        
         // Apply breathing class if static sprite (Gen 9)
         if(enemy.isGen5Plus) this.els.eSprite.classList.add('breathing');
         else this.els.eSprite.classList.remove('breathing');
@@ -660,8 +666,13 @@ class BattleSystem {
         this.pActive = playerPokemonIndex;
         const p = this.pTeam[this.pActive];
         
+        this.els.pSprite.style.display = 'block'; // Force display
         this.els.pSprite.src = p.spriteBack;
-        this.els.pSprite.onerror = () => { this.els.pSprite.src = p.spriteBackStatic; };
+        this.els.pSprite.onerror = () => { 
+            this.els.pSprite.src = p.spriteBackStatic; 
+            this.els.pSprite.style.display = 'block';
+        };
+        
         if(p.isGen5Plus) this.els.pSprite.classList.add('breathing');
         else this.els.pSprite.classList.remove('breathing');
 
